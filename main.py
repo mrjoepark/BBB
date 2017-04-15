@@ -3,7 +3,7 @@ import urllib2
 from time import sleep 
 
 #get gamday URL
-gameday=raw_input("Please paste the URL of the game you wish to track")
+gameday=raw_input("Please paste the URL of the game you wish to track:  ")
 str(gameday)
 
 while True:
@@ -23,8 +23,13 @@ while True:
 
     #access xml attribute using dictionary syntax
     current_inning=game_index.attributes['inning']
+    top_bottom=game_index.attributes['top_inning']
+
+    #turn the attirbute into a int and use format to convert to binary
+    int_current_inning=int(current_inning.value)]
+    #format(value, '04' lead spaces, b=binary
+    print format(int_current_inning, '04b')
     
-    print str(current_inning.value)
 
     sleep(60)
     del html
