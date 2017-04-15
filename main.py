@@ -26,9 +26,17 @@ while True:
     top_bottom=game_index.attributes['top_inning']
 
     #turn the attirbute into a int and use format to convert to binary
-    int_current_inning=int(current_inning.value)]
+    int_current_inning=int(current_inning.value)
     #format(value, '04' lead spaces, b=binary
-    print format(int_current_inning, '04b')
+    bin_current_inning=format(int_current_inning, '04b')
+   
+
+    for i in bin_current_inning:
+        if i == '1':
+            print 'on'
+        else:
+            print 'off'
+        
     
 
     sleep(60)
