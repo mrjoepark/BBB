@@ -29,7 +29,6 @@ while True:
     #format(value, '04' lead spaces, b=binary
     bin_current_inning=format(int_current_inning, '04b')
     bin_current_inning=list(bin_current_inning)
-    print bin_current_inning 
     
    #turn inning lights on or off from bin_current_inning_list 
     if bin_current_inning[0]== '1':
