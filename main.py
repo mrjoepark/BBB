@@ -6,6 +6,8 @@ from time import sleep
 #gameday=raw_input("Please paste the URL of the game you wish to track:  ")
 #str(gameday)
 
+#define GPIO on/off functions here 
+
 while True:
     
     #get the xml  Use boxscore.xml or linescore.xml 
