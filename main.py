@@ -7,8 +7,8 @@ from time import sleep
 #str(gameday)
 
 #get the xml. Use linescore.xml 
-html=urllib2.urlopen('http://gd2.mlb.com/components/game/mlb/year_2017/month_07/day_07/gid_2017_07_07_kcamlb_lanmlb_1/linescore.xml')
-moosetracker=urllib2.urlopen('http://gd2.mlb.com/components/game/mlb/year_2017/month_07/day_07/gid_2017_07_07_kcamlb_lanmlb_1/batters/519058.xml')
+html=urllib2.urlopen('http://gd2.mlb.com/components/game/mlb/year_2017/month_07/day_04/gid_2017_07_04_kcamlb_seamlb_1/linescore.xml')
+moosetracker=urllib2.urlopen('http://gd2.mlb.com/components/game/mlb/year_2017/month_07/day_04/gid_2017_07_04_kcamlb_seamlb_1/batters/519058.xml')
 #parse the xml
 xmldoc=minidom.parse(html)
 moosedoc=minidom.parse(moosetracker)
@@ -139,7 +139,7 @@ def GPIO_away_score():
 while True:
  
     #GPIO functions
-    print bin_moose_hr
+    print('Moose has '+ bin_moose_hr+' home runs in binary form') 
     score()
     topOrBottom()
     inning()
