@@ -42,7 +42,7 @@ int_moose_hr=int(moose_hr.value)
 bin_current_inning=format(int_current_inning, '04b')
 bin_home_score=format(int_home_score, '05b')
 bin_away_score=format(int_away_score, '05b')
-bin_moose_hr=format(int_moose_hr,'06b')
+bin_moose_hr=format(int_moose_hr,'05b')
 print bin_current_inning
 print bin_home_score
 print bin_away_score 
@@ -135,12 +135,40 @@ def GPIO_away_score():
     else:
         print ' fifth off'
         
+def GPIO_moose_hr():
+    print 'moose hr binary GPIO'
+    print bin_moose_hr
+    #turn score lights on or off from bin_away_score 
+    if bin_moose_hr[0]== '1':
+        print ' first on'
+    else:
+        print ' first off'
+    if bin_moose_hr[1]== '1':
+        print ' second on'
+    else:
+        print ' second off'
+    if bin_moose_hr[2]== '1':
+        print ' third on'
+    else:
+        print ' third off'
+    if bin_moose_hr[3]=='1':
+        print ' fourth on'
+    else:
+        print ' fourt off'
+    if bin_moose_hr[4]=='1':
+        print ' fifth on'
+    else:
+        print ' fifth off'
+    if bin_mosse_hr[5]=='1':
+        print 'fifth on'
+    else:
+        print 'fifth off'
+        
 #loop 
 while True:
  
     #GPIO functions
-    print('Moose has this many binary home runs: ') 
-    print bin_moose_hr
+    GPIO_moose_hr()
     score()
     topOrBottom()
     inning()
