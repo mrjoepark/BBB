@@ -139,7 +139,8 @@ def GPIO_away_score():
 while True:
  
     #GPIO functions
-    print('Moose has '+ bin_moose_hr+' home runs in binary form') 
+    print('Moose has this many binary home runs: ') 
+    print bin_moose_hr
     score()
     topOrBottom()
     inning()
@@ -147,5 +148,5 @@ while True:
     GPIO_away_score()
     
     sleep(60)
-    del html
-     
+    #del html
+    #del moosetracker
