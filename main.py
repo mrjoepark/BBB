@@ -6,17 +6,20 @@ from time import sleep
 #gameday=raw_input("Please paste the URL of the game you wish to track:  ")
 #str(gameday)
 
-#get the xm. Use linescore.xml 
-html=urllib2.urlopen('http://gd2.mlb.com/components/game/mlb/year_2017/month_04/day_18/gid_2017_04_18_sfnmlb_kcamlb_1/linescore.xml')
-
+#get the xml. Use linescore.xml 
+html=urllib2.urlopen('http://gd2.mlb.com/components/game/mlb/year_2017/month_07/day_07/gid_2017_07_07_kcamlb_lanmlb_1/linescore.xml')
+moosetracker=urllib2.urlopen('http://gd2.mlb.com/components/game/mlb/year_2017/month_07/day_07/gid_2017_07_07_kcamlb_lanmlb_1/batters/519058.xml')
 #parse the xml
 xmldoc=minidom.parse(html)
+moosedoc=minidom.parse(moosetracker)
 
 #get the xml tag and access it using dictionary syntax
 game=xmldoc.getElementsByTagName('game')
+moosehrelement=moosedoc.getElementsByTagName('season')
 
-#can access element hierarchy using dictionary index
+#can access element hierarchy using dictionary index syntax
 game_index=game[0]
+moose_index=moosehrelement[0]
 
 #access xml attribute using dictionary syntax
 current_inning=game_index.attributes['inning']
@@ -25,24 +28,31 @@ home_score=game_index.attributes['home_team_runs']
 away_score=game_index.attributes['away_team_runs']
 home_team=game_index.attributes['home_team_name']
 away_team=game_index.attributes['away_team_name']
+moose_hr=moose_index.attributes['hr']
 #get values and turn the attirbutes into a int and use format to convert to binary
 int_current_inning=int(current_inning.value)
 str_top_bottom=str(top_bottom.value)
 int_home_score=int(home_score.value)
 int_away_score=int(away_score.value)
 str_home_team=home_team.value
-str_away_team=away_team.value 
+str_away_team=away_team.value
+int_moose_hr=int(moose_hr.value)
 
 #format(value, '04' lead spaces, b=binary)
 bin_current_inning=format(int_current_inning, '04b')
 bin_home_score=format(int_home_score, '05b')
 bin_away_score=format(int_away_score, '05b')
+bin_moose_hr=format(int_moose_hr,'06b')
 print bin_current_inning
 print bin_home_score
 print bin_away_score 
+print bin_moose_hr
+#put str into lists in order to iterate on lns 57 on down
 bin_current_inning=list(bin_current_inning)
 bin_home_score=list(bin_home_score)
-bin_away_score=list(bin_away_score) 
+bin_away_score=list(bin_away_score)
+bin_moose_hr=list(bin_moose_hr)
+
 
 #define GPIO on/off functions here
 #figure out runner on base status pattern 
@@ -129,6 +139,7 @@ def GPIO_away_score():
 while True:
  
     #GPIO functions
+    print bin_moose_hr
     score()
     topOrBottom()
     inning()
